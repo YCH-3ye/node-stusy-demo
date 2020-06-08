@@ -1,13 +1,12 @@
-const handlerUserRouter = (req, res) => {
-  const method = req.method
-  const url = req.url
-  const path = url.split('?')[0]
+const handleUserRouter = (req, res) => {
+  const { method, path } = req
 
-  // 登陆一篇博客
-  if (method === 'POST' && path === '/api/user/login') {
+  // 登陆
+  if(method === 'POST' && path === '/api/user/login') {
     return {
       msg: '这是登陆的接口'
     }
   }
 }
-module.exports = handlerUserRouter
+
+module.exports = handleUserRouter
