@@ -7,7 +7,7 @@ const handlerBlogRouter = (req, res) => {
   console.log(method, path)
 
   // 获取博客列表
-  if(method === 'GET' && path === '/api/blog/list') {
+  if(method === 'GET' && (path === '/' || path === '/api/blog/list')) {
     const author = req.query.author || ''
     const keyword = req.query.keyword || ''
     return new SuccessHandleModel(getList(author, keyword))
