@@ -26,7 +26,21 @@ const getDetail = (id) => {
     }
   ]
 }
+const addBlog = (data) => {
+  return true
+}
+const updateBlog = (data) => {
+  const id = data.id || ''
+  return true
+}
+const delBlog = (data) => {
+  const id = data.id || ''
+  return true
+}
 module.exports = {
   getList,
-  getDetail
+  getDetail,
+  addBlog,
+  updateBlog,
+  delBlog
 }

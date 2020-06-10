@@ -16,12 +16,10 @@ const getPostData = (req) => {
     req.on('data', chunk => {
       postData += chunk.toString()
     })
-    console.log(11)
     req.on('end', () => {
       if(!postData) {
         resolve({})
       }
-      console.log('postData', postData)
       resolve(JSON.parse(postData))
     })
   })
