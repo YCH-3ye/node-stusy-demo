@@ -21,29 +21,29 @@ const handlerBlogRouter = (req, res) => {
 
   // 新建一篇博客
   if (method === 'POST' && path === '/api/blog/new') {
-    const status = addBlog(req.body)
-    if(status) {
-      return new SuccessHandleModel(status)
+    const data = addBlog(req.body)
+    if(data) {
+      return new SuccessHandleModel(data)
     } else {
-      return new ErrorHandleModel(status)
+      return new ErrorHandleModel(data)
     }
   }
   // 更新一篇博客
   if (method === 'POST' && path === '/api/blog/update') {
     const status = updateBlog(req.body)
     if(status) {
-      return new SuccessHandleModel(status)
+      return new SuccessHandleModel()
     } else {
-      return new ErrorHandleModel(status)
+      return new ErrorHandleModel()
     }
   }
   // 删除一篇博客
   if (method === 'POST' && path === '/api/blog/del') {
     const status = delBlog(req.body)
     if(status) {
-      return new SuccessHandleModel(status)
+      return new SuccessHandleModel()
     } else {
-      return new ErrorHandleModel(status)
+      return new ErrorHandleModel()
     }
   }
 }

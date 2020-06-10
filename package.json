@@ -5,7 +5,8 @@
   "main": "wwww/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=dev nodemon ./www/index.js"
+    "dev": "cross-env NODE_ENV=dev nodemon ./www/index.js",
+    "prd": "cross-env NODE_ENV=production nodemon ./www/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "global": "^4.4.0"
+    "global": "^4.4.0",
+    "mysql": "^2.18.1"
   }
 }

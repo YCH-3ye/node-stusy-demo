@@ -1,19 +1,14 @@
+const { exec }  = require('../db/mysql')
 const getList = (author, keyword) => {
-  return [{
-      id: "1",
-      title: '标题1',
-      content: '内容A',
-      createTime: 1591627166164,
-      author: 'zhangsan'
-    },
-    {
-      id: "2",
-      title: '标题2',
-      content: '内容B',
-      createTime: 1591627213461,
-      author: 'lisi'
-    }
-  ]
+  let sql = `select * from blogs where 1=1`
+  if(author) {
+    sql += `and author = '${author}'`
+  }
+  if(keyword) {
+    aql +=  `and title like '%${keyword}%'`
+  }
+
+  return exec(sql)
 }
 const getDetail = (id) => {
   return [
@@ -26,14 +21,17 @@ const getDetail = (id) => {
     }
   ]
 }
-const addBlog = (data) => {
-  return true
+const addBlog = (data ={}) => {
+  console.log('data', data)
+  return {
+    id: 03
+  }
 }
-const updateBlog = (data) => {
+const updateBlog = (data = {}) => {
   const id = data.id || ''
   return true
 }
-const delBlog = (data) => {
+const delBlog = (data = {}) => {
   const id = data.id || ''
   return true
 }
