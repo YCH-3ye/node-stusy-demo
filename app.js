@@ -31,15 +31,15 @@ const serverHandle = (req, res) => {
   req.path = url.split('?')[0]
   req.query = querystring.parse(url.split('?')[1])
   getPostData(req).then((postData) => {
-    console.log('postData', postData)
     req.body = postData
     // 处理 blog 路由
     const blogData = handleBlogRouter(req, res)
-    console.log('blogData', blogData)
     if(blogData) {
-      res.end(
-        JSON.stringify(blogData)
-      )
+      blogData.then(blogList => {
+        res.end(
+          JSON.stringify(blogList)
+        )
+      })
       return
     }
 

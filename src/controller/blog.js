@@ -7,7 +7,7 @@ const getList = (author, keyword) => {
   if(keyword) {
     aql +=  `and title like '%${keyword}%'`
   }
-
+  console.log('---sql',sql)
   return exec(sql)
 }
 const getDetail = (id) => {

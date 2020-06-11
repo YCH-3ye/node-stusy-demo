@@ -10,7 +10,12 @@ const handlerBlogRouter = (req, res) => {
   if(method === 'GET' && (path === '/' || path === '/api/blog/list')) {
     const author = req.query.author || ''
     const keyword = req.query.keyword || ''
-    return new SuccessHandleModel(getList(author, keyword))
+    return getList(author, keyword).then((listDate) => {
+       console.log('listDate', new SuccessHandleModel(listDate))
+      return new SuccessHandleModel(listDate)
+    })
+
+    // return new SuccessHandleModel(getList(author, keyword))
   }
 
   // 获取博客详情
