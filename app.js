@@ -20,6 +20,8 @@ const getPostData = (req) => {
       if(!postData) {
         resolve({})
       }
+      console.log('postData11', postData )
+      console.log('postData', JSON.parse(postData))
       resolve(JSON.parse(postData))
     })
   })
@@ -34,6 +36,7 @@ const serverHandle = (req, res) => {
     req.body = postData
     // 处理 blog 路由
     const blogData = handleBlogRouter(req, res)
+    console.log(1)
     if(blogData) {
       blogData.then(blogList => {
         res.end(
@@ -42,16 +45,19 @@ const serverHandle = (req, res) => {
       })
       return
     }
-
+    console.log(2)
     // 处理 user 路由
     const userData = handleUserRouter(req, res)
-
+    console.log('userData', userData)
     if(userData) {
-      res.end(
-        JSON.stringify(userData)
-      )
+      userData.then(data => {
+        res.end(
+          JSON.stringify(data)
+        )
+      })
       return
     }
+    
 
     res.writeHead(404, {"Content-type": "text/plain"})
     res.write("404 Not Found\n")

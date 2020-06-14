@@ -21,35 +21,41 @@ const handlerBlogRouter = (req, res) => {
   // 获取博客详情
   if(method === 'GET' && path === '/api/blog/detail') {
     const id = req.query.id || ''
-    return new SuccessHandleModel(getDetail(id))
+    return getDetail(id).then( (res) => {
+      console.log('id', res)
+      return new SuccessHandleModel(res[0])
+    })
   }
 
   // 新建一篇博客
   if (method === 'POST' && path === '/api/blog/new') {
-    const data = addBlog(req.body)
-    if(data) {
-      return new SuccessHandleModel(data)
-    } else {
-      return new ErrorHandleModel(data)
-    }
+    const author = '赵云'
+    return addBlog(req.body).then( (res) => {
+      const  id = res.insertId
+      return new SuccessHandleModel(id)
+    })
   }
   // 更新一篇博客
   if (method === 'POST' && path === '/api/blog/update') {
-    const status = updateBlog(req.body)
-    if(status) {
-      return new SuccessHandleModel()
-    } else {
-      return new ErrorHandleModel()
-    }
+    return updateBlog(req.body).then((res) => {
+      if(res.affectedRows === 1) {
+        return true
+      } else {
+        return false
+      }
+    })
+
   }
   // 删除一篇博客
   if (method === 'POST' && path === '/api/blog/del') {
-    const status = delBlog(req.body)
-    if(status) {
-      return new SuccessHandleModel()
-    } else {
-      return new ErrorHandleModel()
-    }
+
+    return delBlog(req.body).then((res) => {
+      if(res.affectedRows === 1) {
+        return true
+      } else {
+        return false
+      }
+    })
   }
 }
 module.exports = handlerBlogRouter

@@ -10,7 +10,6 @@ const con = mysql.createConnection(MYSQL_CONF)
 con.connect()
 function exec(sql) {
   const promise = new Promise((resolve, reject) => {
-    console.log('111---')
     con.query(sql, (err, result) => {
       if (err) {
         reject(err)
