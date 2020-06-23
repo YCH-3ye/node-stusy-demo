@@ -8,12 +8,11 @@ const handleUserRouter = (req, res) => {
   if(method === 'POST' && path === '/api/user/login') {
     const res = loginCheck(req.body)
     return res.then((data) => {
-      console.log(data)
-      if(data[0]) {
-        console.log(111)
+      if(data.username) {
+        req.session.username = data.username
+        req.session.realname = data.realname
         return new SuccessHandleModel()
       } else {
-        console.log(222)
         console.log(new ErrorHandleModel('登陆失败'))
         return new ErrorHandleModel('登陆失败')
       }
